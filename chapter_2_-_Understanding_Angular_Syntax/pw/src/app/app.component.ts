@@ -9,5 +9,35 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'pw';
+  includeLetters = false;
+
+  includeNumbers = false;
+
+  includeSymbols = false;
+
+  password = '';
+
+  onChangeUseLetters() {
+    this.includeLetters = !this.includeLetters;
+  }
+
+  onChangeUseNumbers() {
+    this.includeNumbers = !this.includeNumbers;
+  }
+
+  onChangeUseSymbols() {
+    this.includeSymbols = !this.includeSymbols;
+  }
+
+  onButtonClick() {
+    this.password = 'MY PASSWORD';
+
+    console.log(`
+      About to generate password with: 
+      - includes letters: ${this.includeLetters}
+      - includes numbers: ${this.includeNumbers}
+      - includes symbols: ${this.includeSymbols}
+    `);
+  }
+
 }
