@@ -2,7 +2,7 @@
 
 <div>
     <label>Enter password length</label>
-    <input />
+    <input (input)="onChangeLength($any($event.target).value)" type="number"/>
 </div>
 
 <div>
@@ -21,7 +21,10 @@
 </div>
 
 <div>
-    <button (click)="onButtonClick()">Generate</button>
+    <button
+    [disabled]="!(length && (includeLetters || includeNumbers || includeSymbols))"
+    (click)="onButtonClick()">
+    Generate</button>
 </div>
 
 <div> 

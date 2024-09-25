@@ -9,6 +9,9 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
+
+  length = 0;
+
   includeLetters = false;
 
   includeNumbers = false;
@@ -16,6 +19,13 @@ export class AppComponent {
   includeSymbols = false;
 
   password = '';
+
+  onChangeLength(value: string) {
+    const parsedValue = parseInt(value);
+    if (!isNaN(parsedValue)) {
+      this.length = parsedValue;
+    }
+  }
 
   onChangeUseLetters() {
     this.includeLetters = !this.includeLetters;
@@ -30,14 +40,25 @@ export class AppComponent {
   }
 
   onButtonClick() {
-    this.password = 'MY PASSWORD';
-
-    console.log(`
-      About to generate password with: 
-      - includes letters: ${this.includeLetters}
-      - includes numbers: ${this.includeNumbers}
-      - includes symbols: ${this.includeSymbols}
-    `);
+    const numbers = '0123456789';
+    const letters = 'abcdefghijklmnopqrstuvwxyz';
+    const symbols = '!@#$%^&*()';
+    let validChars = '';
+    if (this.includeLetters) {
+      validChars += letters;
+    }
+    if (this.includeNumbers){
+      validChars += numbers;
+    }
+    if (this.includeSymbols){
+      validChars += symbols;
+    }
+    let generatedPassword = '';
+    for (let i = 0; i < this.length; i++) {
+      const index = Math.floor(Math.random() * validChars.length);
+      generatedPassword += validChars[index];
+    }
+    this.password = generatedPassword;
   }
 
 }
