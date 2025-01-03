@@ -1,0 +1,7 @@
+services:
+  web:
+    build: .
+    image: angular-bootcamp:chapter-4
+    ports:
+      - "4200:4200"
+
